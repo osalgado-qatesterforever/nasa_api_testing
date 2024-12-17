@@ -12,13 +12,23 @@ def api_client():
 
 class TestNasa:
     def test_pic_of_the_day(self, api_client, log):
-        apod_endpoint = "planetary/apod"
-        this_function_name = inspect.stack()[0].function
+        apod_endpoint = "/planetary/apod"
         
         response = api_client.get(apod_endpoint)
-        pp = PrettyPrinter()
         response.raise_for_status()
-        log.info(f"Test {this_function_name } passed.")
+        pp = PrettyPrinter()
+        log.info(f"Test {inspect.stack()[0].function } passed.")
         log.info(f"Pretty response:\n {pp.pformat(response.json())}")
-        
+    
+    def test_near_earth_objects(self, api_client, log):
+        neofeed_endpoint = "/neo/rest/v1/feed"
+        params = {
+            'start_date':'2020-01-22',
+            'end_date':'2020-01-23'
+        }
+        response = api_client.get(neofeed_endpoint)
+        response.raise_for_status()
+        pp = PrettyPrinter()
+        log.info(f"Test {inspect.stack()[0].function } passed.")
+        log.info(f"Pretty response:\n {pp.pformat(response.json())}")
 

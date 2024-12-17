@@ -1,6 +1,5 @@
 from src.utils.tools import setup_logger
 import pytest
-import json
 import os
 from datetime import datetime
 from os import path
@@ -21,7 +20,7 @@ def setup_teardown():
     print("\nTearing down resources...")
 
 
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="session")
 def log():
     log_level = logging.INFO
     root_path = path.dirname(path.dirname(path.dirname(path.realpath(__file__))))
