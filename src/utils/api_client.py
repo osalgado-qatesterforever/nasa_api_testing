@@ -1,4 +1,5 @@
 import requests
+from requests import Response
 
 class APIClient:
     BASE_URL = "https://api.nasa.gov"
@@ -10,22 +11,26 @@ class APIClient:
         if ext_params is not None:
             self.params.update(ext_params)
         
-    def get(self, endpoint):
+    def get(self, endpoint:str) -> Response:
+        """ Makes a GET request """
         url = f"{self.BASE_URL}/{endpoint}"
         response = requests.get(url, params=self.params)
         return response
     
-    def post(self, endpoint, data):
+    def post(self, endpoint:str) -> Response:
+        """ Makes a POST request """
         url = f"{self.BASE_URL}/{endpoint}"
         response = requests.post(url, params=self.params)
         return response
 
-    def put(self, endpoint, data):
+    def put(self, endpoint:str) -> Response:
+        """ Makes a PUT request """
         url = f"{self.BASE_URL}/{endpoint}"
         response = requests.put(url, params=self.params)
         return response   
 
-    def delete(self, endpoint):
+    def delete(self, endpoint:str) -> Response:
+        """ Makes a DELETE request """
         url = f"{self.BASE_URL}/{endpoint}"
         response = requests.delete(url, params=self.params)
         return response
