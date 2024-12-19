@@ -1,12 +1,15 @@
 import requests
 from requests import Response
+from src.utils.tools import get_api_key
+
 
 class APIClient:
     BASE_URL = "https://api.nasa.gov"
 
     def __init__(self, ext_params=None):
+        api_key = get_api_key()
         self.params = {
-            'api_key':"hH21kco9yqxWAEDKc2WoY7Pe6OdQw8EjjbjwgHCc"
+            'api_key':api_key
             }
         if ext_params is not None:
             self.params.update(ext_params)

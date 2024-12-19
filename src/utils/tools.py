@@ -1,5 +1,7 @@
 import logging
 from logging import Logger
+from os import environ
+
 
 def setup_logger(log_file: str, level: str = logging.INFO, name: str = "") -> Logger:
     """ Sets up a new logger.
@@ -22,3 +24,8 @@ def setup_logger(log_file: str, level: str = logging.INFO, name: str = "") -> Lo
     logger.setLevel(level)
     logger.addHandler(handler)
     return logger
+
+
+def get_api_key() -> str:
+    """ Returns NASA_API_KEY environment variable value. """
+    return environ['NASA_API_KEY']
